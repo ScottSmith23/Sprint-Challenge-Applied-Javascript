@@ -50,11 +50,19 @@ carouselDiv.appendChild(rightB);
 //carousel functionality
 img1.style.display = "block";
 var imgRN = img1;
+var imgNum = 1;
+var leftslide = gsap.to(imgRN, {
+  duration: 0.6,
+  x: "100%",
+  ease: "elastic(1, 0.75)",
+  paused: true
+});
+
 leftB.addEventListener('click', event => {
     if(imgRN == img1){
-    img4.style.display = "block";
     imgRN.style.display = "none";
     imgRN = img4;
+    imgRN.style.display = "block";
     } else if (imgRN == img4){
       img3.style.display = "block";
       img4.style.display = "none";
