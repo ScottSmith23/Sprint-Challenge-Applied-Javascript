@@ -17,3 +17,93 @@
     <div class="right-button"> > </div>
   </div>
 */
+
+function createCarousel(){
+//creating elements
+const carouselDiv = document.createElement('div');
+const leftB = document.createElement('div');
+const img1 = document.createElement('img');
+const img2 = document.createElement('img');
+const img3 = document.createElement('img');
+const img4 = document.createElement('img');
+const rightB = document.createElement('div');
+
+carouselDiv.classList.add('carousel');
+leftB.classList.add('left-button');
+rightB.classList.add('right-button');
+
+img1.src = "./assets/carousel/mountains.jpeg";
+img2.src = "./assets/carousel/computer.jpeg";
+img3.src = "./assets/carousel/trees.jpeg";
+img4.src = "./assets/carousel/turntable.jpeg";
+leftB.textContent = "<";
+rightB.textContent = ">";
+
+carouselDiv.appendChild(leftB);
+carouselDiv.appendChild(img1);
+carouselDiv.appendChild(img2);
+carouselDiv.appendChild(img3);
+carouselDiv.appendChild(img4);
+carouselDiv.appendChild(rightB);
+
+
+//carousel functionality
+img1.style.display = "block";
+var imgRN = img1;
+var imgNum = 1;
+var leftslide = gsap.to(imgRN, {
+  duration: 0.6,
+  x: "100%",
+  ease: "elastic(1, 0.75)",
+  paused: true
+});
+
+leftB.addEventListener('click', event => {
+    if(imgRN == img1){
+    imgRN.style.display = "none";
+    imgRN = img4;
+    imgRN.style.display = "block";
+    } else if (imgRN == img4){
+      img3.style.display = "block";
+      img4.style.display = "none";
+      imgRN = img3;
+    } else if(imgRN == img3){
+      img2.style.display = "block";
+      img3.style.display = "none";
+      imgRN = img2;
+    } else if (imgRN == img2){
+      img1.style.display = "block";
+      img2.style.display = "none";
+      imgRN = img1;
+    }
+});
+rightB.addEventListener('click', () =>{
+  if(imgRN == img1){
+    img2.style.display = "block";
+    img1.style.display = "none";
+    imgRN = img2;
+    } else if (imgRN == img2){
+      img3.style.display = "block";
+      img2.style.display = "none";
+      imgRN = img3;
+    } else if(imgRN == img3){
+      img4.style.display = "block";
+      img3.style.display = "none";
+      imgRN = img4;
+    } else if (imgRN == img4){
+      img1.style.display = "block";
+      img4.style.display = "none";
+      imgRN = img1;
+    }
+
+});
+
+
+
+return carouselDiv;
+}
+
+const carouselCont = document.querySelector('.carousel-container');
+
+carouselCont.appendChild(createCarousel());
+
